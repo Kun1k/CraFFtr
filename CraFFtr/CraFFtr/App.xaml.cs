@@ -1,5 +1,4 @@
-﻿using CraFFtr.Services;
-using CraFFtr.Views;
+﻿using CraFFtr.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,8 +11,7 @@ namespace CraFFtr
         public App()
         {
             InitializeComponent();
-
-            DependencyService.Register<MockDataStore>();
+            
             MainPage = new AppShell();
         }
 

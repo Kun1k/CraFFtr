@@ -6,6 +6,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\IDataStore.cs" />
+    <Compile Remove="Services\MockDataStore.cs" />
+    <Compile Remove="ViewModels\LoginViewModel.cs" />
+    <Compile Remove="ViewModels\NewItemViewModel.cs" />
+    <Compile Remove="Views\LoginPage.xaml.cs" />
+    <Compile Remove="Views\NewItemPage.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\LoginPage.xaml" />
+    <EmbeddedResource Remove="Views\NewItemPage.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>
@@ -14,5 +29,9 @@
     <EmbeddedResource Update="Views\ItemSearch.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
 </Project>

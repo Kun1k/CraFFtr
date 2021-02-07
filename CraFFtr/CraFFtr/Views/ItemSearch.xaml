@@ -5,16 +5,35 @@
              xmlns:model="clr-namespace:CraFFtr.Models"
              x:Class="CraFFtr.Views.ItemSearch">
     <ContentPage.Content>
-        <StackLayout x:DataType="local:ItemsViewModel">
-            <Label Text="Search Item and select all you need to craft" Margin="20,20,0,0" FontSize="Large"/>
+        <StackLayout>
+            <Label Text="Search Item and select all you need to craft" Margin="20,20,0,0" FontSize="Medium"/>
 
-            <SearchBar x:Name="ItemSearchBar">
-                
+            <SearchBar x:Name="ItemSearchBar" SearchCommandParameter="{Binding Text, Source={x:Reference ItemSearchBar}}" SearchCommand="{Binding SearchItemsCommand}">
+
             </SearchBar>
-            <CollectionView x:Name="ItemsResult">
-                
+
+            <CollectionView SelectionChangedCommand="{Binding ItemSelectionChangedCommand}" BackgroundColor="Cyan" x:Name="ItemsResult" ItemsSource="{Binding Items}" EmptyView="No items to display" SelectionMode="Multiple"
+                            HeightRequest="350">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" x:DataType="model:Item">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="{Binding Icon}" Aspect="AspectFill" HeightRequest="40" WidthRequest="40"/>
+                            <Label Grid.Column="1" Text="{Binding Name}" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold" LineBreakMode="TailTruncation" />
+
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
             </CollectionView>
+
+            <Button Text="Calculate Materials"></Button>
         </StackLayout>
     </ContentPage.Content>
-    
+
 </ContentPage>
