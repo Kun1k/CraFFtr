@@ -12,7 +12,11 @@
 
             </SearchBar>
 
-            <CollectionView SelectionChangedCommand="{Binding ItemSelectionChangedCommand}" BackgroundColor="Cyan" x:Name="ItemsResult" ItemsSource="{Binding Items}" EmptyView="No items to display" SelectionMode="Multiple"
+            <CollectionView SelectionChanged="ItemsResult_SelectionChanged"                            
+                            BackgroundColor="Cyan" 
+                            x:Name="ItemsResult" 
+                            ItemsSource="{Binding Items}" 
+                            EmptyView="Search for an item" SelectionMode="Multiple"
                             HeightRequest="350">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -26,13 +30,31 @@
                             </Grid.ColumnDefinitions>
                             <Image Grid.Column="0" Source="{Binding Icon}" Aspect="AspectFill" HeightRequest="40" WidthRequest="40"/>
                             <Label Grid.Column="1" Text="{Binding Name}" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold" LineBreakMode="TailTruncation" />
+                            <Label IsVisible="False" Text="{Binding Id}" />
 
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Button Text="Calculate Materials"></Button>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <CheckBox x:Name="CheckSubmats" Grid.Column="0" Grid.Row="0"></CheckBox>
+                <Label Grid.Column="1" Grid.Row="0" Text="Include Submaterials" FontAttributes="Bold" VerticalOptions="CenterAndExpand" FontSize="Medium" LineBreakMode="TailTruncation" />
+
+                <CheckBox x:Name="CheckAllIngredients" Grid.Column="0" Grid.Row="1"></CheckBox>
+                <Label Grid.Column="1" Grid.Row="1" Text="Show all Ingredients" FontAttributes="Bold" VerticalOptions="CenterAndExpand" FontSize="Medium" LineBreakMode="TailTruncation" />
+            </Grid>
+            
+            <Button IsEnabled="True" Clicked="Calculate_Clicked" x:Name="Calculate" Text="Calculate Materials" VerticalOptions="CenterAndExpand" ></Button>
+            
         </StackLayout>
     </ContentPage.Content>
 

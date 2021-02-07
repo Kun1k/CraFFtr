@@ -1,4 +1,5 @@
-﻿using CraFFtr.REST;
+﻿using CraFFtr.Models;
+using CraFFtr.REST;
 using CraFFtr.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,29 @@ namespace CraFFtr.Views
         {
             base.OnAppearing();
             //_viewModel.OnAppearing();
+        }
+
+        private async void Calculate_Clicked(object sender, EventArgs e)
+        {
+            var selectedItems = ItemsResult.SelectedItems;
+            var itemIds = new List<string>();
+
+            foreach(Item item in selectedItems)
+            {
+                itemIds.Add(item.Id);
+            }
+
+            await Navigation.PushAsync(new ItemDetailPage(itemIds));
+        }
+
+        private void ItemsResult_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedItems = ItemsResult.SelectedItems;            
+
+            if (selectedItems.Any())
+            {                
+
+            }
         }
     }
 }
