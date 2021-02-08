@@ -1,57 +1,34 @@
 ﻿using CraFFtr.Models;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace CraFFtr.ViewModels
-{
-    [QueryProperty(nameof(ItemId), nameof(ItemId))]
-    public class ItemDetailViewModel : BaseViewModel
+{    
+    public class ItemDetailViewModel : INotifyPropertyChanged
     {
-        private string itemId;
-        private string text;
-        private string description;
-        public string Id { get; set; }
+        public ObservableCollection<Item> Items { get; private set; }
 
-        public string Text
-        {
-            get => text;
-            set => SetProperty(ref text, value);
+        public ItemDetailViewModel(List<Item> selectedItems)
+        {            
+            this.Items = new ObservableCollection<Item>(selectedItems);
+
+            OnPropertyChanged("Items");
+
         }
 
-        public string Description
-        {
-            get => description;
-            set => SetProperty(ref description, value);
-        }
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        public string ItemId
+        void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            get
-            {
-                return itemId;
-            }
-            set
-            {
-                itemId = value;
-                LoadItemId(value);
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        public async void LoadItemId(string itemId)
-        {
-        //    try
-        //    {
-        //        var item = await DataStore.GetItemAsync(itemId);
-        //        Id = item.Id;
-        //        Text = item.Text;
-        //        Description = item.Description;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        Debug.WriteLine("Failed to Load Item");
-        //    }
-        }
+        #endregion
     }
 }

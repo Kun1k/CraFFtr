@@ -6,11 +6,52 @@
              x:Class="CraFFtr.Views.ItemDetailPage"
              Title="Items Detail">
 
-    <StackLayout Spacing="20" Padding="15">
-        <Label Text="Text:" FontSize="Medium" />
-        <Label Text="ll" FontSize="Small"/>
-        <Label Text="Description:" FontSize="Medium" />
-        <Label Text="BBBBBBB" FontSize="Small"/>
+    <StackLayout x:DataType="local:ItemDetailViewModel">
+
+        <Label Text="Needed Crafting Materials" FontSize="Large" HorizontalOptions="StartAndExpand" Padding="10,20,20,20"></Label>
+
+        <CollectionView  BackgroundColor="Gray"                             
+                         x:Name="ItemIngredients" 
+                         Margin="0,0,0,0"
+                         ItemsSource="{Binding Items}" 
+                         EmptyView="No items selected"
+                         HeightRequest="500">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="10" BackgroundColor="LightSkyBlue" BorderColor="Red" Padding="5" Margin="5">
+                    <Grid Padding="10" x:DataType="model:Item">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                            <!--<RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />-->
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="200"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Column="0" Grid.Row="0" Source="{Binding Icon}" Aspect="AspectFill" HeightRequest="40" WidthRequest="40"/>
+                        <Label Grid.Column="2" Grid.Row="0" Text="{Binding Name}" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold" LineBreakMode="TailTruncation" />
+                        <Label Grid.Column="2" Grid.Row="1" Text="{Binding Id}" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold" LineBreakMode="TailTruncation" />
+                        <Label Grid.Column="2" Grid.Row="2" Text="{Binding UrlType}" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold" LineBreakMode="TailTruncation" />
+
+                    </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
     </StackLayout>
-    
+
 </ContentPage>

@@ -19,7 +19,7 @@ namespace CraFFtr.Views
         public ItemSearch()
         {
             InitializeComponent();
-
+            
             BindingContext = _viewModel = new ItemSearchViewModel();
         }
 
@@ -39,7 +39,9 @@ namespace CraFFtr.Views
                 itemIds.Add(item.Id);
             }
 
-            await Navigation.PushAsync(new ItemDetailPage(itemIds));
+            var items = _viewModel.Items.Where(x => itemIds.Contains(x.Id)).ToList();
+
+            await Navigation.PushAsync(new ItemDetailPage(items));
         }
 
         private void ItemsResult_SelectionChanged(object sender, SelectionChangedEventArgs e)

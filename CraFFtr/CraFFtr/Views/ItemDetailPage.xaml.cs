@@ -1,21 +1,30 @@
-﻿using CraFFtr.ViewModels;
+﻿
+using CraFFtr.Models;
+using CraFFtr.ViewModels;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace CraFFtr.Views
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItemDetailPage : ContentPage
     {
         public List<string> SelectedItemIds;
+        
+        ItemDetailViewModel _viewModel;
 
-        public ItemDetailPage(List<string> itemIds)
+        public ItemDetailPage(List<Item> items)
         {
-            InitializeComponent();
+            InitializeComponent();            
 
-            SelectedItemIds = itemIds;
+            BindingContext = _viewModel = new ItemDetailViewModel(items);            
+        }
 
-            BindingContext = new ItemDetailViewModel();
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();            
         }
     }
 }
