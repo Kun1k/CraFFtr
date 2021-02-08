@@ -18,6 +18,8 @@ namespace CraFFtr.ViewModels
     {
         public Command SearchItemsCommand { get; }
         public string Text { get; set; }
+
+        //It has to be set as property {get; set;} to work with CollectionView
         public ObservableCollection<Item> Items { get; private set; }        
         public ICommand ItemSelectionChangedCommand => new Command(ItemSelectionChanged);
 
@@ -50,6 +52,8 @@ namespace CraFFtr.ViewModels
 
         private async Task<List<Item>> GetSearchedItems(SearchCommand sc)
         {
+            //todo: Maybe put this logic into a REST client class to be used everywhere else
+
             HttpClient client = new HttpClient();
 
             string uri = sc.Query;
@@ -57,6 +61,8 @@ namespace CraFFtr.ViewModels
             HttpResponseMessage response = await client.GetAsync(uri);
 
             var contentString = response.Content.ReadAsStringAsync().Result;            
+            //end todo
+
 
             var jObject = JObject.Parse(contentString);            
             var itemArray = (JArray)jObject["Results"];

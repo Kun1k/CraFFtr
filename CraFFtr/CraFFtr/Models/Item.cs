@@ -20,5 +20,6 @@ namespace CraFFtr.Models
         }
         public string Name { get; set; }
         public string UrlType { get; set; }
+        public Recipe ItemRecipe { get; set; }
     }
 }

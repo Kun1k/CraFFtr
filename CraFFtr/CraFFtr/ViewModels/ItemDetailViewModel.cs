@@ -12,12 +12,13 @@ namespace CraFFtr.ViewModels
 {    
     public class ItemDetailViewModel : INotifyPropertyChanged
     {
+
+        //It has to be set as property {get; set;} to work with CollectionView
         public ObservableCollection<Item> Items { get; private set; }
 
         public ItemDetailViewModel(List<Item> selectedItems)
         {            
             this.Items = new ObservableCollection<Item>(selectedItems);
-
             OnPropertyChanged("Items");
 
         }
