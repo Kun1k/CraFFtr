@@ -39,7 +39,7 @@ namespace CraFFtr.ViewModels
             
             var text = obj.ToString();
 
-            var sc = new SearchCommand(string.Format("search?string={0}&columns=ID,Name,Icon,UrlType&limit=20&",text));
+            var sc = new SearchCommand(string.Format("search?string={0}&columns=ID,Name,Icon,UrlType&limit=40&",text));
             
             var itemsFound = await GetSearchedItems(sc);
 

@@ -13,17 +13,16 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout>
+    <StackLayout BackgroundColor="DarkSlateGray">
         
         <!--<Label Text="Needed Crafting Materials" FontSize="Large" FontAttributes="Bold" HorizontalOptions="StartAndExpand" Padding="10"></Label>-->
 
-        <CollectionView  BackgroundColor="Gray"                             
-                         x:Name="ItemIngredients"                                                   
+        <CollectionView  x:Name="ItemIngredients"                                                   
                          ItemsSource="{Binding Recipes}" 
                          EmptyView="No items selected">
 
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical" ItemSpacing="15" />
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
@@ -85,7 +84,52 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
+        <CollectionView  x:Name="RecipeSubmats"                                                   
+                         IsEnabled="False"
+                         IsVisible="False"
+                         ItemsSource="{Binding Recipes}" 
+                         EmptyView="No items selected">
 
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="10" BackgroundColor="LightSkyBlue" BorderColor="Red" Padding="5" Margin="5">
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+        <Frame CornerRadius="10" BackgroundColor="LightSkyBlue" >
+            <Grid VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <RadioButton x:Name="chckSubmatsPerRecipe" Grid.Row="0" Grid.Column="0" CheckedChanged="chckSubmatsPerRecipe_CheckedChanged" Text="Show all submats per recipe"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="Show all submats per recipe" FontAttributes="Bold" FontSize="Medium" VerticalOptions="CenterAndExpand" />
+
+                <RadioButton x:Name="ChckAllSubmats" Grid.Row="1" Grid.Column="0" CheckedChanged="ChckAllSubmats_CheckedChanged" Text="Show total submats for all recipes"/>
+                <Label Grid.Row="1" Grid.Column="1" Text="Show total submats for all recipes" FontAttributes="Bold" FontSize="Medium"  VerticalOptions="CenterAndExpand"/>
+            </Grid>
+        </Frame>
     </StackLayout>
 
 </ContentPage>

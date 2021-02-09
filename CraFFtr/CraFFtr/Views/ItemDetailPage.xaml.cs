@@ -27,5 +27,29 @@ namespace CraFFtr.Views
         {
             base.OnAppearing();            
         }
+
+        private void chckSubmatsPerRecipe_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            var chckBox = (RadioButton)sender;
+
+            if (chckBox.IsChecked)
+            {
+                ItemIngredients.IsVisible = false;
+                RecipeSubmats.IsEnabled = true;
+                RecipeSubmats.IsVisible= true;
+            }
+            else
+            {
+                ItemIngredients.IsVisible = true;
+                
+                RecipeSubmats.IsEnabled = false;
+                RecipeSubmats.IsVisible = false;
+            }
+        }
+
+        private void ChckAllSubmats_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+
+        }
     }
 }

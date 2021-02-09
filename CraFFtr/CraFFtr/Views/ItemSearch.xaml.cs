@@ -15,6 +15,7 @@ namespace CraFFtr.Views
     public partial class ItemSearch : ContentPage
     {
         ItemSearchViewModel _viewModel;
+        
 
         public ItemSearch()
         {
@@ -46,12 +47,8 @@ namespace CraFFtr.Views
 
         private void ItemsResult_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedItems = ItemsResult.SelectedItems;            
-
-            if (selectedItems.Any())
-            {                
-
-            }
+            //Add selected item to global List
+            //OnDeselect remove item from List
         }
     }
 }

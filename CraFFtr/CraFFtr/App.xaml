@@ -27,6 +27,15 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="DarkSlateGray" />
+            </Style>
+
+            <Style TargetType="SearchBar">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="PlaceholderColor" Value="DarkGray" />
+            </Style>
         </ResourceDictionary>        
     </Application.Resources>
 </Application>
