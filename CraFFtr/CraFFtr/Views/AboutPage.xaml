@@ -31,14 +31,14 @@
         </StackLayout>
         <ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                <Label Text="Crafting Helper for FF XIV" FontSize="Title"/>
-                <Label Text="Search for an item, calculate ammount of materials and more" FontSize="16" Padding="0,0,0,0"/>
+                <Label Text="Crafting Helper for FF XIV" Style="{DynamicResource CaptionStyle}" TextColor="Black" FontSize="Title"/>
+                <Label Text="Search for an item, calculate ammount of materials and more" Style="{DynamicResource CaptionStyle}" TextColor="Black" FontSize="16" Padding="0,0,0,0"/>
                 <Label FontSize="16" Padding="0,24,0,0">
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="Learn more at "/>
-                                <Span Text="[INSERT LINK TO CRAFFTR]" FontAttributes="Bold"/>
+                                <Span TextColor="Black" Text="Learn more at "/>
+                                <Span TextColor="Black" Text="[INSERT LINK TO CRAFFTR]" FontAttributes="Bold"/>
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>

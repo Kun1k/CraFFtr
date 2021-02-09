@@ -12,7 +12,7 @@ namespace CraFFtr.REST
 
         public void CreateCommand(string query)
         {            
-            var privateKey = "&private_key=" + ApiKey;
+            var privateKey = "private_key=" + ApiKey;
 
             Query = "https://xivapi.com/" + query + privateKey;
         }

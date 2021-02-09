@@ -19,7 +19,8 @@ namespace CraFFtr.Views
         {
             InitializeComponent();            
 
-            BindingContext = _viewModel = new ItemDetailViewModel(items);            
+            BindingContext = _viewModel = new ItemDetailViewModel(items);
+                       
         }
 
         protected override void OnAppearing()
