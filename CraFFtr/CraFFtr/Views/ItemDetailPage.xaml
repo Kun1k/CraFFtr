@@ -14,18 +14,16 @@
     </ContentPage.Resources>
 
     <StackLayout>
-
-        <Label Text="Needed Crafting Materials" FontSize="Large" HorizontalOptions="StartAndExpand" Padding="10,20,20,20"></Label>
+        
+        <Label Text="Needed Crafting Materials" FontSize="Large" FontAttributes="Bold" HorizontalOptions="StartAndExpand" Padding="10"></Label>
 
         <CollectionView  BackgroundColor="Gray"                             
-                         x:Name="ItemIngredients" 
-                         Margin="0,0,0,0"
+                         x:Name="ItemIngredients"                                                   
                          ItemsSource="{Binding Recipes}" 
-                         EmptyView="No items selected"
-                         HeightRequest="500">
+                         EmptyView="No items selected">
 
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="15" />
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
@@ -33,39 +31,53 @@
                     <Frame CornerRadius="10" BackgroundColor="LightSkyBlue" BorderColor="Red" Padding="5" Margin="5">
                         <Grid Padding="10">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="40"/>
-                                <RowDefinition Height="40" />
-                                <RowDefinition Height="40" />
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="50" />
                                 <RowDefinition Height="50" />
                                 <RowDefinition Height="50" />
                                 <RowDefinition Height="50" />
                                 <RowDefinition Height="50" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="50" />
                                 <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="50" />
                                 <ColumnDefinition Width="200"/>
                             </Grid.ColumnDefinitions>
-
-                            <Image Grid.Column="0" Grid.Row="0" Source="{Binding Item.Icon}" Aspect="AspectFill" HeightRequest="40" WidthRequest="40"/>
-
-                            <!--Ammount-->
-                            <Label IsVisible="{Binding Ingredients[0].Item2, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[0].Item2, StringFormat='{0}x'}" Grid.Column="1" Grid.Row="0" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
-                            <Label IsVisible="{Binding Ingredients[1].Item2, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[1].Item2, StringFormat='{0}x'}" Grid.Column="1" Grid.Row="1" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
-                            <Label IsVisible="{Binding Ingredients[2].Item2, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[2].Item2, StringFormat='{0}x'}" Grid.Column="1" Grid.Row="2" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
-                            <Label IsVisible="{Binding Ingredients[3].Item2, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[3].Item2, StringFormat='{0}x'}" Grid.Column="1" Grid.Row="3" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
-                            <Label IsVisible="{Binding Ingredients[4].Item2, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[4].Item2, StringFormat='{0}x'}" Grid.Column="1" Grid.Row="4" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
-                            <Label IsVisible="{Binding Ingredients[5].Item2, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[5].Item2, StringFormat='{0}x'}" Grid.Column="1" Grid.Row="5" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
-                            <Label IsVisible="{Binding Ingredients[6].Item2, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[6].Item2, StringFormat='{0}x'}" Grid.Column="1" Grid.Row="6" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
                             
+                            <!--Recipe Item Header-->
+                            <Image Grid.Column="0" Grid.Row="0" Source="{Binding Item.Icon}" Aspect="AspectFill" HeightRequest="50" WidthRequest="50"/>
+                            <Label Text="{Binding Item.Name}" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="0" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold" FontSize="Medium"/>
+                            
+                            
+                            <!--Ammount-->
+                            <Label IsVisible="{Binding Ingredients[0].Item2, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[0].Item2, StringFormat='{0}x'}" Grid.Column="1" Grid.Row="1" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                            <Label IsVisible="{Binding Ingredients[1].Item2, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[1].Item2, StringFormat='{0}x'}" Grid.Column="1" Grid.Row="2" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                            <Label IsVisible="{Binding Ingredients[2].Item2, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[2].Item2, StringFormat='{0}x'}" Grid.Column="1" Grid.Row="3" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                            <Label IsVisible="{Binding Ingredients[3].Item2, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[3].Item2, StringFormat='{0}x'}" Grid.Column="1" Grid.Row="4" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                            <Label IsVisible="{Binding Ingredients[4].Item2, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[4].Item2, StringFormat='{0}x'}" Grid.Column="1" Grid.Row="5" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                            <Label IsVisible="{Binding Ingredients[5].Item2, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[5].Item2, StringFormat='{0}x'}" Grid.Column="1" Grid.Row="6" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                            <Label IsVisible="{Binding Ingredients[6].Item2, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[6].Item2, StringFormat='{0}x'}" Grid.Column="1" Grid.Row="7" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+
+                            <!--Icon-->
+                            <Image Grid.Column="2" Grid.Row="1" Source="{Binding Ingredients[0].Item1.Icon}" Aspect="AspectFill" HeightRequest="40" WidthRequest="40"/>
+                            <Image Grid.Column="2" Grid.Row="2" Source="{Binding Ingredients[1].Item1.Icon}" Aspect="AspectFill" HeightRequest="40" WidthRequest="40"/>
+                            <Image Grid.Column="2" Grid.Row="3" Source="{Binding Ingredients[2].Item1.Icon}" Aspect="AspectFill" HeightRequest="40" WidthRequest="40"/>
+                            <Image Grid.Column="2" Grid.Row="4" Source="{Binding Ingredients[3].Item1.Icon}" Aspect="AspectFill" HeightRequest="40" WidthRequest="40"/>
+                            <Image Grid.Column="2" Grid.Row="5" Source="{Binding Ingredients[4].Item1.Icon}" Aspect="AspectFill" HeightRequest="40" WidthRequest="40"/>
+                            <Image Grid.Column="2" Grid.Row="6" Source="{Binding Ingredients[5].Item1.Icon}" Aspect="AspectFill" HeightRequest="40" WidthRequest="40"/>
+                            <Image Grid.Column="2" Grid.Row="7" Source="{Binding Ingredients[6].Item1.Icon}" Aspect="AspectFill" HeightRequest="40" WidthRequest="40"/>
+
                             <!--Ingredient Name-->
-                            <Label IsVisible="{Binding Ingredients[0].Item1.Name, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[0].Item1.Name}" Grid.Column="2" Grid.Row="0" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
-                            <Label IsVisible="{Binding Ingredients[1].Item1.Name, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[1].Item1.Name}" Grid.Column="2" Grid.Row="1" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
-                            <Label IsVisible="{Binding Ingredients[2].Item1.Name, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[2].Item1.Name}" Grid.Column="2" Grid.Row="2" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold" />
-                            <Label IsVisible="{Binding Ingredients[3].Item1.Name, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[3].Item1.Name}" Grid.Column="2" Grid.Row="3" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold" />
-                            <Label IsVisible="{Binding Ingredients[4].Item1.Name, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[4].Item1.Name}" Grid.Column="2" Grid.Row="4" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
-                            <Label IsVisible="{Binding Ingredients[5].Item1.Name, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[5].Item1.Name}" Grid.Column="2" Grid.Row="5" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
-                            <Label IsVisible="{Binding Ingredients[6].Item1.Name, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[6].Item1.Name}" Grid.Column="2" Grid.Row="6" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                            <Label IsVisible="{Binding Ingredients[0].Item1.Name, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[0].Item1.Name}" Grid.Column="3" Grid.Row="1" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                            <Label IsVisible="{Binding Ingredients[1].Item1.Name, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[1].Item1.Name}" Grid.Column="3" Grid.Row="2" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                            <Label IsVisible="{Binding Ingredients[2].Item1.Name, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[2].Item1.Name}" Grid.Column="3" Grid.Row="3" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold" />
+                            <Label IsVisible="{Binding Ingredients[3].Item1.Name, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[3].Item1.Name}" Grid.Column="3" Grid.Row="4" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold" />
+                            <Label IsVisible="{Binding Ingredients[4].Item1.Name, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[4].Item1.Name}" Grid.Column="3" Grid.Row="5" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                            <Label IsVisible="{Binding Ingredients[5].Item1.Name, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[5].Item1.Name}" Grid.Column="3" Grid.Row="6" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                            <Label IsVisible="{Binding Ingredients[6].Item1.Name, Converter={StaticResource TextToBoolConverter}}" Text="{Binding Ingredients[6].Item1.Name}" Grid.Column="3" Grid.Row="7" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
 
                         </Grid>
                     </Frame>
