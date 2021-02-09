@@ -6,9 +6,7 @@
              x:Class="CraFFtr.Views.ItemSearch">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Search Item and select all you need to craft" Margin="20,20,0,0" FontSize="Medium"/>
-
-            <SearchBar x:Name="ItemSearchBar" SearchCommandParameter="{Binding Text, Source={x:Reference ItemSearchBar}}" SearchCommand="{Binding SearchItemsCommand}">
+            <SearchBar Placeholder="Search Item and select all you need" x:Name="ItemSearchBar" SearchCommandParameter="{Binding Text, Source={x:Reference ItemSearchBar}}" SearchCommand="{Binding SearchItemsCommand}">
 
             </SearchBar>
 
@@ -16,8 +14,7 @@
                             BackgroundColor="Cyan" 
                             x:Name="ItemsResult" 
                             ItemsSource="{Binding Items}" 
-                            EmptyView="Search for an item" SelectionMode="Multiple"
-                            HeightRequest="350">
+                            EmptyView="Search for an item" SelectionMode="Multiple">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="10" x:DataType="model:Item">
@@ -37,7 +34,7 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Grid>
+            <!--<Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50" />
                 </Grid.RowDefinitions>
@@ -51,7 +48,7 @@
 
                 <CheckBox x:Name="CheckAllIngredients" Grid.Column="0" Grid.Row="1"></CheckBox>
                 <Label Grid.Column="1" Grid.Row="1" Text="Show all Ingredients" FontAttributes="Bold" VerticalOptions="CenterAndExpand" FontSize="Medium" LineBreakMode="TailTruncation" />
-            </Grid>
+            </Grid>-->
             
             <Button IsEnabled="True" Clicked="Calculate_Clicked" x:Name="Calculate" Text="Calculate Materials" VerticalOptions="CenterAndExpand" ></Button>
             

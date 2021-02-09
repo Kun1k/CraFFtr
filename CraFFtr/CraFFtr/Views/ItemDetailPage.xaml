@@ -15,7 +15,7 @@
 
     <StackLayout>
         
-        <Label Text="Needed Crafting Materials" FontSize="Large" FontAttributes="Bold" HorizontalOptions="StartAndExpand" Padding="10"></Label>
+        <!--<Label Text="Needed Crafting Materials" FontSize="Large" FontAttributes="Bold" HorizontalOptions="StartAndExpand" Padding="10"></Label>-->
 
         <CollectionView  BackgroundColor="Gray"                             
                          x:Name="ItemIngredients"                                                   

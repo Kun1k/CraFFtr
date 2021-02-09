@@ -41,11 +41,12 @@ namespace CraFFtr.ViewModels
             foreach(var item in Items)
             {
                 await GetRecipeForItem(item);
-            }            
+            }
 
-            OnPropertyChanged("Ingredients");
 
             OnPropertyChanged("Recipes");
+
+            OnPropertyChanged("Ingredients");            
         }
 
         private async Task<List<Recipe>> GetRecipeForItem(Item item)
