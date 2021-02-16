@@ -99,12 +99,79 @@ namespace CraFFtr.ViewModels
             //Ingredients = new ObservableCollection<Tuple<Item, int>>();
 
             var recipes = new List<Recipe>();
-            //Creat Recipe
-            var recipe = new Recipe();
-            var tokens = new Dictionary<JToken, int>();            
-            var ingredients = new List<Item>();
+            
+            var ingredientTokens = new List<IngredientJson>();
+            var recipeTokens = new List<JArray>();
+            var ingredients = new List<Item>();            
 
-            //Get Recipe Item
+
+            //Generate Recipe Item from Json
+            var recipe = GenerateRecipeFromJToken(jObj);
+
+            //Getting Ingredient JTokens
+            for (var i=0; i < 10; i++)
+            {
+                var ingredientToken = new IngredientJson();
+                var ammount = int.Parse(jObj["AmountIngredient" + i].ToString());
+                           
+
+                if ((jObj["ItemIngredient" + i].Type != JTokenType.Null) && ammount > 0)
+                {
+                    ingredientToken.Ammount = ammount;
+                    ingredientToken.IngredientToken = jObj["ItemIngredient" + i];
+
+                    //Recipe for first level of Subitem -> can't go deeper than 1 Level of item
+                    //API doesn't allow it
+                    if ((jObj["ItemIngredientRecipe" + i].Type != JTokenType.Null))
+                        ingredientToken.RecipesArray = (JArray)jObj["ItemIngredientRecipe" + i];
+                    
+                    ingredientTokens.Add(ingredientToken);
+                }
+                                                                
+            }   
+            
+
+            foreach (var token in ingredientTokens)
+            {                              
+                var itemName = token.IngredientToken["Name"].ToString();
+                var itemId = token.IngredientToken["ID"].ToString();
+                var itemIcon = token.IngredientToken["Icon"].ToString();
+                var ammount = token.Ammount;
+                var mainIngredient = new Item() { Name = itemName, Id = itemId, Icon = itemIcon, Ammount = ammount };
+
+                if (token.RecipesArray != null)
+                {                    
+                    //todo pass all recipes here, not only the first one
+                    var subItemRecipes = await GetRecipesForSubitem(token.RecipesArray);
+                    mainIngredient.ItemRecipe = subItemRecipes.FirstOrDefault();                    
+                }
+                                
+                ingredients.Add(mainIngredient);                
+            }
+       
+            recipe.Ingredients = ingredients;                       
+            
+            if(isMainRecipe)
+                Recipes.Add(recipe);
+
+            recipes.Add(recipe);
+
+            return recipes;
+        }
+
+
+        internal class IngredientJson
+        {
+            public int Ammount { get; set; }
+
+            public JToken IngredientToken { get; set; }
+
+            public JArray RecipesArray { get; set; }
+        }
+
+        private Recipe GenerateRecipeFromJToken(JToken jObj)
+        {
+            var recipe = new Recipe();
             var recipeItemName = jObj["ItemResult"]["Name"].ToString();
             var recipeItemIcon = jObj["ItemResult"]["Icon"].ToString();
             var recipeItemId = jObj["ItemResult"]["ID"].ToString();
@@ -116,48 +183,73 @@ namespace CraFFtr.ViewModels
             //Base Item
             recipe.Item = new Item() { Id = recipeItemId, Name = recipeItemName, Icon = recipeItemIcon, UrlType = "Item" };
 
-            //Getting Ingredient JTokens
-            for (var i=0; i < 10; i++)
-            {
-                var ammount = int.Parse(jObj["AmountIngredient" + i].ToString());
-
-                if ((jObj["ItemIngredient" + i].Type != JTokenType.Null) && ammount > 0)
-                    tokens.Add(jObj["ItemIngredient" + i], ammount);
-                        //tokens.Add(jObj["ItemIngredient"+i]);                
-            }
-
-            //Getting Dictionary Ingredient, Ammount => still JTokens (parsing from Json)
-            foreach (var token in tokens)
-            {                              
-                var itemName = token.Key["Name"].ToString();
-                var itemId = token.Key["ID"].ToString();
-                var itemIcon = token.Key["Icon"].ToString();
-                var ammount = token.Value;
-                var item = new Item() { Name = itemName, Id = itemId, Icon = itemIcon, Ammount = ammount };
-
-                var recipesForItem = await GetRecipeForItem(item, false);
-                item.ItemRecipe = recipesForItem.FirstOrDefault();
-
-                //var tuple = Tuple.Create(item, ammount);
-                ingredients.Add(item);
-
-                //Property for View
-                //Ingredients.Add(tuple);
-            }
-       
-            //recipe.Ingredients = ingredients;                       
-            
-            if(isMainRecipe)
-                Recipes.Add(recipe);
-
-            recipes.Add(recipe);
-
-
-            return recipes;
+            return recipe;
         }
 
+        private async Task<List<Recipe>> GetRecipesForSubitem(JArray JArrayRecipes)
+        {
+            var recipes = new List<Recipe>();
+            var ingredients = new List<Item>();
+            var ingredientTokens = new List<IngredientJson>();
 
 
+            foreach (var jObj in JArrayRecipes)
+            {                
+                var recipe = GenerateRecipeFromJToken(jObj);
+
+
+                //Getting Ingredient JTokens
+                for (var i = 0; i < 10; i++)
+                {
+                    var ingredientToken = new IngredientJson();
+                    var ammount = int.Parse(jObj["AmountIngredient" + i].ToString());
+
+
+                    if ((jObj["ItemIngredient" + i].Type != JTokenType.Null) && ammount > 0)
+                    {
+                        ingredientToken.Ammount = ammount;
+                        ingredientToken.IngredientToken = jObj["ItemIngredient" + i];                        
+                        ingredientTokens.Add(ingredientToken);
+                    }
+
+
+                    //var ammount = int.Parse(jObj["AmountIngredient" + i].ToString());
+
+                    //if ((jObj["ItemIngredient" + i].Type != JTokenType.Null) && ammount > 0)
+                    //    ingredientTokens.Add(jObj["ItemIngredient" + i], ammount);                    
+                }
+
+                //Getting Dictionary Ingredient, Ammount => still JTokens (parsing from Json)                
+                foreach (var token in ingredientTokens)
+                {
+                    var itemName = token.IngredientToken["Name"].ToString();
+                    var itemId = token.IngredientToken["ID"].ToString();
+                    var itemIcon = token.IngredientToken["Icon"].ToString();
+                    var canHQ = int.Parse(token.IngredientToken["CanBeHq"].ToString());
+                    var ammount = token.Ammount;
+                    var item = new Item() { Name = itemName, Id = itemId, Icon = itemIcon, Ammount = ammount };
+
+                    //This is for the last level of recipe
+                    if(canHQ == 1)
+                    {
+                        var recipesForItem = await GetRecipeForItem(item, false);
+                        item.ItemRecipe = recipesForItem.FirstOrDefault();
+                    }                    
+                                        
+
+
+                    ingredients.Add(item);
+
+
+                }
+
+                recipe.Ingredients = ingredients;
+                recipes.Add(recipe);
+            }
+                                    
+            return recipes;
+        }
+        
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
