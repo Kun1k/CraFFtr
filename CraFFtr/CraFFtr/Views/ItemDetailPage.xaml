@@ -16,7 +16,8 @@
         
     
     <StackLayout BackgroundColor="DarkSlateGray">
-        <!--<Label Text="Needed Crafting Materials" FontSize="Large" FontAttributes="Bold" HorizontalOptions="StartAndExpand" Padding="10"></Label>-->        
+        <!--<Label Text="Needed Crafting Materials" FontSize="Large" FontAttributes="Bold" HorizontalOptions="StartAndExpand" Padding="10"></Label>-->
+        <!--<RefreshView IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}">-->
             <CollectionView  x:Name="ItemIngredients"                            
                          ItemsSource="{Binding Recipes}"
                          SelectionMode="Single"
@@ -31,26 +32,25 @@
 
                 <DataTemplate>
                     <Frame CornerRadius="10" BackgroundColor="LightSkyBlue" BorderColor="Red" Padding="5" Margin="5">
-                        <cc:CustomGrid Item="{Binding Ingredients}" Padding="10">
+                        <cc:CustomGrid Item="{Binding Ingredients}" Padding="10" RowSpacing="15">
                             <cc:CustomGrid.RowDefinitions>
                                 <RowDefinition Height="50"/>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="50" />
-                                <RowDefinition Height="50" />
-                                <RowDefinition Height="50" />
-                                <RowDefinition Height="50" />
-                                <RowDefinition Height="50" />
-                                <RowDefinition Height="50" />
                             </cc:CustomGrid.RowDefinitions>
                             <cc:CustomGrid.ColumnDefinitions>
-                                <ColumnDefinition Width="25" />
-                                <ColumnDefinition Width="30" />
-                                <ColumnDefinition Width="200" />
-                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="60" />
                             </cc:CustomGrid.ColumnDefinitions>
-                            
-                            <Image Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"  Source="{Binding Item.Icon}" HeightRequest="50" WidthRequest="50"/>
-                            <Label Text="{Binding Item.Name}" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="0" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold" FontSize="Medium" VerticalTextAlignment="Center"/>
+
+                            <Image Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"  Source="{Binding Item.Icon}" HeightRequest="50" WidthRequest="50" HorizontalOptions="StartAndExpand"/>
+                            <Label Grid.Column="0" Margin="60,0,0,0" Grid.ColumnSpan="7" Grid.Row="0" Text="{Binding Item.Name}"  Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold" FontSize="Medium" VerticalTextAlignment="Center"/>
+
+                            <!--<Image Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"  Source="{Binding Item.Icon}" HeightRequest="50" WidthRequest="50"/>
+                            <Label Text="{Binding Item.Name}" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="0" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold" FontSize="Medium" VerticalTextAlignment="Center"/>-->
                         </cc:CustomGrid>
                     </Frame>
                 </DataTemplate>
@@ -111,34 +111,7 @@
                 </DataTemplate>-->
             </CollectionView.ItemTemplate>
         </CollectionView>
-
-        <CollectionView  x:Name="AllSubmatsForItem"                                                   
-                         IsEnabled="False"
-                         IsVisible="False"
-                         ItemsSource="{Binding Recipes}" 
-                         EmptyView="No items selected">
-
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
-            </CollectionView.ItemsLayout>
-
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame CornerRadius="10" BackgroundColor="LightSkyBlue" BorderColor="Red" Padding="5" Margin="5">
-                        <Grid Padding="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="50"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="50" />
-                            </Grid.ColumnDefinitions>
-                        </Grid>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <!--</RefreshView>-->
 
         <!--<Frame CornerRadius="10" BackgroundColor="LightSkyBlue" >
             <Grid VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand">

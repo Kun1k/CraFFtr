@@ -9,6 +9,8 @@ namespace CraFFtr
 {    
     public class CustomGrid : Grid
     {
+        private static readonly int imageSizeRequest = 30;
+
         public static readonly BindableProperty ItemProperty = BindableProperty.Create(
                                                         propertyName: "Item",
                                                         returnType: typeof(List<Item>),
@@ -28,59 +30,70 @@ namespace CraFFtr
         
 
         private static void PopulateGrid(CustomGrid cg, List<Item> items)
-        {
-            var columnIndex = 0;
-            var rowIndex = 1;
+        {            
+            var rowIndex = 1;            
 
             foreach(var item in items)
             {
-                //<Label Grid.Column="0" Grid.Row="1" Text=""  Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold" VerticalTextAlignment="Center"/>
-
-                var label = new Label
-                {
-                    Text = item.Ammount.ToString() + "x",
-                    FontAttributes = FontAttributes.Bold,                    
-                    VerticalTextAlignment=TextAlignment.Center
-                };
-                label.SetDynamicResource(StyleProperty, "ListItemTextStyle");
-
-                //<Image Grid.Column="1" Grid.Row="1" Source="" HeightRequest="40" WidthRequest="40"/>
-                var image = new Image
-                {
-                    Source = item.Icon,
-                    HeightRequest = 40,
-                    WidthRequest = 40
-                };
-
-
-                //<Label Grid.Column="3" Grid.Row="1" VerticalTextAlignment="Center" Text=""  Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
-                var itemNameLabel = new Label
-                {
-                    Text = item.Name,
-                    FontAttributes = FontAttributes.Bold,
-                    VerticalTextAlignment = TextAlignment.Center
-                };
-                itemNameLabel.SetDynamicResource(StyleProperty, "ListItemTextStyle");
-
-                cg.Children.Add(label, 0, rowIndex);
-                cg.Children.Add(image, 1, rowIndex);
-                cg.Children.Add(itemNameLabel,2, rowIndex);
-
-                //first population done -> check 2nd Level (subitems)
+                CreateControls(cg, item, rowIndex, 0);                
                 rowIndex++;
-                
-                //has Sub-Items
-                if(item.ItemRecipe != null)
-                {
 
+                //has Sub-Items
+                if (item.ItemRecipe != null)
+                {
+                    foreach (var ingredient in item.ItemRecipe.Ingredients)
+                    {
+                        CreateControls(cg, ingredient, rowIndex, 1);
+                        rowIndex++;
+
+                        if(ingredient.ItemRecipe != null)
+                        {
+                            foreach (var lastIngredient in ingredient.ItemRecipe.Ingredients)
+                            {
+                                CreateControls(cg, lastIngredient, rowIndex, 2);
+                                rowIndex++;
+                            }
+                        }
+                    }
                 }
 
-                
+
             }
+        }
+
+        private static void CreateControls(CustomGrid cg, Item item, int rowIndex, int columnIndex)
+        {
+            var label = new Label
+            {
+                Text = item.Ammount.ToString() + "x",
+                FontAttributes = FontAttributes.Bold,
+                VerticalTextAlignment = TextAlignment.Center
+            };
+            label.SetDynamicResource(StyleProperty, "ListItemTextStyle");
+
+            var image = new Image
+            {
+                Source = item.Icon,
+                HeightRequest = imageSizeRequest,
+                WidthRequest = imageSizeRequest
+            };
+
+            var itemNameLabel = new Label
+            {
+                Text = item.Name,
+                FontAttributes = FontAttributes.Bold,
+                Margin = new Thickness(20, 0, 0, 0),
+                VerticalTextAlignment = TextAlignment.Center
+            };
+            itemNameLabel.SetDynamicResource(StyleProperty, "ListItemTextStyle");
 
 
-            //The parameters map to column, colspan, row, rowspan
-            //cg.Children.Add(CONTROL, 0, 3, 0, 1);
+            cg.Children.Add(label, columnIndex, rowIndex);
+            cg.Children.Add(image, columnIndex, rowIndex);
+            cg.Children.Add(itemNameLabel, columnIndex + 1, rowIndex);
+
+            Grid.SetColumnSpan(image, 2);
+            Grid.SetColumnSpan(itemNameLabel, 5);
         }
 
         static void OnItemPropertyChanged(BindableObject bindable, object oldValue, object newValue)

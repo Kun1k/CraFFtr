@@ -25,6 +25,8 @@ namespace CraFFtr.ViewModels
 
         //public ObservableCollection<Tuple<Item, int>> Ingredients { get; set; }
 
+        public bool IsRefreshing { get; set; }
+
         public ItemDetailViewModel(List<Item> selectedItems)
         {            
             this.Items = new ObservableCollection<Item>(selectedItems);
@@ -37,6 +39,8 @@ namespace CraFFtr.ViewModels
 
         public async void CalculateIngredients()
         {
+            IsRefreshing = true;
+
             Recipes = new ObservableCollection<Recipe>();
 
             foreach(var item in Items)
@@ -47,7 +51,10 @@ namespace CraFFtr.ViewModels
 
             OnPropertyChanged("Recipes");
 
-            OnPropertyChanged("Ingredients");           
+            OnPropertyChanged("Ingredients");
+            IsRefreshing = false;
+
+
         }
 
         private async Task<List<Recipe>> GetRecipeForItem(Item item, bool isMainRecipe)
