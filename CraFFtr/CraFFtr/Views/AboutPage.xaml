@@ -15,6 +15,70 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <!--<CollectionView ItemsSource="2"
+        EmptyView="No items selected">
+
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+        </CollectionView.ItemsLayout>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Frame CornerRadius="10" BackgroundColor="LightSkyBlue" BorderColor="Red" Padding="5" Margin="5">
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            --><!--<RowDefinition Height="50"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>--><!--
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            --><!--<ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="50" />--><!--
+                        </Grid.ColumnDefinitions>
+
+                        
+                        <Label Text="Exarchic Coat of Fending" Grid.ColumnSpan="7" Grid.Column="0" Grid.Row="0" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Label Text="1x Ice Cluster" Grid.ColumnSpan="5" Grid.Column="0" Grid.Row="1" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                        <Label Text="3x Earth Cluster" Grid.ColumnSpan="5" Grid.Column="0" Grid.Row="2" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                        
+                        <Label Text="2x Duraluminum Ingot" Grid.ColumnSpan="5" Grid.Column="0" Grid.Row="3" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                        <Label Text="3x Ice Cluster" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="4" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                        <Label Text="3x Earth Cluster" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="5" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                        <Label Text="4x Dolomite" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="6" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                        <Label Text="2x Aluminum Ore" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="7" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                        
+                        
+                        <Label Text="2x Thylacoleo Leather" Grid.ColumnSpan="5" Grid.Column="0" Grid.Row="8" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                        <Label Text="3x Earth Cluster" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="9" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                        <Label Text="3x Wind Cluster" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="10" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                        <Label Text="4x Wattle Petribark" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="11" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                        <Label Text="2x Thylacoleo Skin" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="12" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                        
+                        <Label Text="1x Dwarven Cotton" Grid.ColumnSpan="5" Grid.Column="0" Grid.Row="13" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                        <Image Grid.Column="0" Grid.Row="13" Source="https://ffxiv.gamerescape.com/w/images/thumb/e/ed/Dwarven_Cotton_Icon.png/40px-Dwarven_Cotton_Icon.png" Margin="0,0,20,0"/>
+                        <Label Text="4x Lightning Crystal" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="14" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                        
+                        <Label Text="3x Dwarven Cotton Thread" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="15" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                        <Label Text="3x Lightning Crystal" Grid.ColumnSpan="5" Grid.Column="2" Grid.Row="16" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+                        <Label Text="4x Dwarven Cotton Boll" Grid.ColumnSpan="5" Grid.Column="2" Grid.Row="17" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
+
+
+                    </Grid>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>-->
+
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

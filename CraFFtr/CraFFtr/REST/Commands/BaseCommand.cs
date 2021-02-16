@@ -8,7 +8,7 @@ namespace CraFFtr.REST
     {
         public string Query { get; set; }
         
-        public string ApiKey = "f4327a11e5334f1a99da01d6040e08a3789f22ab5128425ba69697a574ca6a88";        
+        public string ApiKey = "c8be512484b54723b719660d93440e068128b77df85d400ba90acd94e286f669";        
 
         public void CreateCommand(string query)
         {            

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CraFFtr.Models
 {
@@ -19,7 +20,11 @@ namespace CraFFtr.Models
             }
         }
         public string Name { get; set; }
+        public int Ammount { get; set; }
+
         public string UrlType { get; set; }
         public Recipe ItemRecipe { get; set; }
+
+        public List<Recipe> ItemRecipes { get; set; }
     }
 }

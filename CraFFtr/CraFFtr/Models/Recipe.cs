@@ -11,6 +11,6 @@ namespace CraFFtr.Models
         public Item Item { get; set; }
 
         //Item and its ammount needed for the craft
-        public List<Tuple<Item, int>> Ingredients { get; set; }
+        public List<Item> Ingredients { get; set; }
     }
 }
