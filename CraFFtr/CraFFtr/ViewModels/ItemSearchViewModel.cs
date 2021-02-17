@@ -67,9 +67,7 @@ namespace CraFFtr.ViewModels
             var jObject = JObject.Parse(contentString);            
             var itemArray = (JArray)jObject["Results"];
 
-            var foundItems = itemArray.ToObject<List<Item>>();
-            
-
+            var foundItems = itemArray.ToObject<List<Item>>();                     
 
             client.Dispose();
             return foundItems;

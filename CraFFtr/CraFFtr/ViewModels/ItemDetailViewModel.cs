@@ -21,9 +21,7 @@ namespace CraFFtr.ViewModels
         //It has to be set as property {get; set;} to work with CollectionView
         public ObservableCollection<Item> Items { get; private set; }
 
-        public ObservableCollection<Recipe> Recipes { get; set; }
-
-        //public ObservableCollection<Tuple<Item, int>> Ingredients { get; set; }
+        public ObservableCollection<Recipe> Recipes { get; set; }        
 
         public bool IsRefreshing { get; set; }
 
@@ -57,7 +55,7 @@ namespace CraFFtr.ViewModels
 
         }
 
-        private async Task<List<Recipe>> GetRecipeForItem(Item item, bool isMainRecipe)
+        private async Task<List<Recipe>> GetRecipeForItem(Item item, bool isMainRecipe, int ammountFactor = 1)
         {
             var recipes = new List<Recipe>();
 
@@ -88,7 +86,7 @@ namespace CraFFtr.ViewModels
                     contentString = response.Content.ReadAsStringAsync().Result.ToString();
 
                     jObj = JObject.Parse(contentString);
-                    recipes = await CreateRecipe(jObj, isMainRecipe);
+                    recipes = await CreateRecipe(jObj, isMainRecipe, ammountFactor);
                     //}
                 }
 
@@ -102,7 +100,7 @@ namespace CraFFtr.ViewModels
 
         }
 
-        private async Task<List<Recipe>> CreateRecipe(JToken jObj, bool isMainRecipe)
+        private async Task<List<Recipe>> CreateRecipe(JToken jObj, bool isMainRecipe, int ammountFactor = 1)
         {
             //Ingredients = new ObservableCollection<Tuple<Item, int>>();
 
@@ -125,7 +123,7 @@ namespace CraFFtr.ViewModels
 
                 if ((jObj["ItemIngredient" + i].Type != JTokenType.Null) && ammount > 0)
                 {
-                    ingredientToken.Ammount = ammount;
+                    ingredientToken.Ammount = ammount * ammountFactor;
                     ingredientToken.IngredientToken = jObj["ItemIngredient" + i];
 
                     //Recipe for first level of Subitem -> can't go deeper than 1 Level of item
@@ -146,15 +144,17 @@ namespace CraFFtr.ViewModels
                 var itemIcon = token.IngredientToken["Icon"].ToString();
                 var ammount = token.Ammount;
                 var mainIngredient = new Item() { Name = itemName, Id = itemId, Icon = itemIcon, Ammount = ammount };
+                var type = token.IngredientToken["ItemSearchCategory"]["Name"].ToString();
 
                 if (token.RecipesArray != null)
                 {
                     //todo pass all recipes here, not only the first one
-                    var subItemRecipes = await GetRecipesForSubitem(token.RecipesArray);
+                    var subItemRecipes = await GetRecipesForSubitem(token.RecipesArray, ammount);
                     mainIngredient.ItemRecipe = subItemRecipes.FirstOrDefault();
                 }
-
-                ingredients.Add(mainIngredient);
+                
+                if (type != "Crystals")
+                    ingredients.Add(mainIngredient);
             }
 
             recipe.Ingredients = ingredients;
@@ -194,7 +194,7 @@ namespace CraFFtr.ViewModels
             return recipe;
         }
 
-        private async Task<List<Recipe>> GetRecipesForSubitem(JArray JArrayRecipes)
+        private async Task<List<Recipe>> GetRecipesForSubitem(JArray JArrayRecipes, int ammountFactor)
         {
             var recipes = new List<Recipe>();
             var ingredients = new List<Item>();
@@ -217,7 +217,7 @@ namespace CraFFtr.ViewModels
 
                 if ((jObj["ItemIngredient" + i].Type != JTokenType.Null) && ammount > 0)
                 {
-                    ingredientToken.Ammount = ammount;
+                    ingredientToken.Ammount = ammount * ammountFactor;
                     ingredientToken.IngredientToken = jObj["ItemIngredient" + i];
                     ingredientTokens.Add(ingredientToken);
                 }
@@ -234,21 +234,23 @@ namespace CraFFtr.ViewModels
             {
                 var itemName = token.IngredientToken["Name"].ToString();
                 var itemId = token.IngredientToken["ID"].ToString();
-                var itemIcon = token.IngredientToken["Icon"].ToString();
-                var canHQ = int.Parse(token.IngredientToken["CanBeHq"].ToString());
+                var itemIcon = token.IngredientToken["Icon"].ToString();                
+                var canHQ = int.Parse(token.IngredientToken["CanBeHq"].ToString());                
+                var type = token.IngredientToken["ItemSearchCategory"]["Name"].ToString();
                 var ammount = token.Ammount;
+
+
                 var item = new Item() { Name = itemName, Id = itemId, Icon = itemIcon, Ammount = ammount };
 
                 //This is for the last level of recipe
                 if (canHQ == 1)
                 {
-                    var recipesForItem = await GetRecipeForItem(item, false);
+                    var recipesForItem = await GetRecipeForItem(item, false, ammount);
                     item.ItemRecipe = recipesForItem.FirstOrDefault();
                 }
 
-
-
-                ingredients.Add(item);
+                if(type != "Crystals")
+                    ingredients.Add(item);
 
 
             }

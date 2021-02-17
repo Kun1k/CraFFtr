@@ -15,6 +15,8 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+
+
     <!--<CollectionView ItemsSource="2"
         EmptyView="No items selected">
 
@@ -73,6 +75,8 @@
                 </ContentView>
             </StackLayout>
         </StackLayout>
+        
+
         <ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
                 <Label Text="Crafting Helper for FF XIV" Style="{DynamicResource CaptionStyle}" TextColor="Black" FontSize="Title"/>

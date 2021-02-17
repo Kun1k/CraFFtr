@@ -3,16 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:CraFFtr.ViewModels"  
              xmlns:model="clr-namespace:CraFFtr.Models"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="CraFFtr.Views.ItemSearch">
     <ContentPage.Content>
         <StackLayout>
             <SearchBar Placeholder="Search Item and select all you need" x:Name="ItemSearchBar" SearchCommandParameter="{Binding Text, Source={x:Reference ItemSearchBar}}" SearchCommand="{Binding SearchItemsCommand}">
 
             </SearchBar>
-
+            
             <CollectionView SelectionChanged="ItemsResult_SelectionChanged"                            
                             BackgroundColor="Cyan" 
-                            x:Name="ItemsResult" 
+                            x:Name="ItemsResult"                             
                             ItemsSource="{Binding Items}"                            
                             EmptyView="Search for an item" SelectionMode="Multiple">
                 <CollectionView.ItemTemplate>

@@ -11,17 +11,17 @@ namespace CraFFtr
     {
         private static readonly int imageSizeRequest = 30;
 
-        public static readonly BindableProperty ItemProperty = BindableProperty.Create(
-                                                        propertyName: "Item",
+        public static readonly BindableProperty ItemsProperty = BindableProperty.Create(
+                                                        propertyName: "Items",
                                                         returnType: typeof(List<Item>),
                                                         declaringType: typeof(CustomGrid),
                                                         defaultValue: null,                                                        
                                                         defaultBindingMode: BindingMode.TwoWay,
-                                                        propertyChanged: OnItemPropertyChanged);
-        public List<Item> Item
+                                                        propertyChanged: OnItemsPropertyChanged);
+        public List<Item> Items
         {
-            get { return (List<Item>)GetValue(ItemProperty); }
-            set { SetValue(ItemProperty, value); }
+            get { return (List<Item>)GetValue(ItemsProperty); }
+            set { SetValue(ItemsProperty, value); }
         }      
 
         public CustomGrid()
@@ -96,7 +96,7 @@ namespace CraFFtr
             Grid.SetColumnSpan(itemNameLabel, 5);
         }
 
-        static void OnItemPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        static void OnItemsPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var cg = (CustomGrid)bindable;            
 
