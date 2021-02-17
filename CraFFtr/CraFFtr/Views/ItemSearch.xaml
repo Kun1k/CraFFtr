@@ -4,15 +4,39 @@
              xmlns:local="clr-namespace:CraFFtr.ViewModels"  
              xmlns:model="clr-namespace:CraFFtr.Models"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:slideview="clr-namespace:Xamarin.Forms.SlideView;assembly=Xamarin.Forms.SlideView"
              x:Class="CraFFtr.Views.ItemSearch">
     <ContentPage.Content>
         <StackLayout>
+
+            <CollectionView ItemsSource="{Binding JobCategories}"
+                ItemsLayout="HorizontalList" HeightRequest="80"
+                            SelectionMode="Multiple">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Column="0" Source="{Binding Icon}" Aspect="AspectFill" HeightRequest="40" WidthRequest="40"/>
+
+                        </Grid>
+
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
             <SearchBar Placeholder="Search Item and select all you need" x:Name="ItemSearchBar" SearchCommandParameter="{Binding Text, Source={x:Reference ItemSearchBar}}" SearchCommand="{Binding SearchItemsCommand}">
 
             </SearchBar>
-            
+
             <CollectionView SelectionChanged="ItemsResult_SelectionChanged"                            
-                            BackgroundColor="Cyan" 
+                            BackgroundColor="Cyan"                            
                             x:Name="ItemsResult"                             
                             ItemsSource="{Binding Items}"                            
                             EmptyView="Search for an item" SelectionMode="Multiple">
@@ -34,7 +58,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
             <Button IsEnabled="True" Clicked="Calculate_Clicked" x:Name="Calculate" Text="Calculate Materials" VerticalOptions="CenterAndExpand" ></Button>
             
         </StackLayout>
