@@ -65,17 +65,14 @@ namespace CraFFtr.ViewModels
 
                 filterString = ","+string.Join(",", classString);
             }
-
-            //Serch for items based on selected classes
-            //https://xivapi.com/search?string=exarchic&columns=ID,Name,Icon,UrlType&filters=Recipes.ID>1, ClassJobCategory.BLM=1&limit=40
+            
             var sc = new SearchCommand(string.Format("search?string={0}&columns=ID,Name,Icon,UrlType&filters=Recipes.ID>1{1}&limit=40&", searchString, filterString));
             
             var itemsFound = await GetSearchedItems(sc);
 
             Items = new ObservableCollection<Item>(itemsFound.Where(x => x.UrlType=="Item"));
 
-            OnPropertyChanged("Items");
-            //Items = new ObservableCollection<Item>(new List<Item>() { new Item { Name="Test1", Icon= "https://xivapi.com/i/030000/030630.png" } });
+            OnPropertyChanged("Items");            
             
         }
 

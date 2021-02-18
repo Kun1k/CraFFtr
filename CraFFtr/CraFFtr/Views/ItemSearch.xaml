@@ -42,8 +42,10 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-
-            <SearchBar Placeholder="Search Item and select all you need" x:Name="ItemSearchBar" SearchCommandParameter="{Binding Text, Source={x:Reference ItemSearchBar}}" SearchCommand="{Binding SearchItemsCommand}"/>
+            <SearchBar Placeholder="Search Item and select all you need"
+                       x:Name="ItemSearchBar"                       
+                       SearchCommandParameter="{Binding Text, Source={x:Reference ItemSearchBar}}"
+                       SearchCommand="{Binding SearchItemsCommand}"/>
 
             <CollectionView x:Name="ItemsResult"                                       
                             ItemsSource="{Binding Items}"                            
