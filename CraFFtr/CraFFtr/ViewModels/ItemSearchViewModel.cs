@@ -5,6 +5,7 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
@@ -17,46 +18,57 @@ namespace CraFFtr.ViewModels
     class ItemSearchViewModel : INotifyPropertyChanged
     {
         public Command SearchItemsCommand { get; }
+
+        public Command ClassSelectionChangedCommand { get; }
+
+
         public string Text { get; set; }
 
         //It has to be set as property {get; set;} to work with CollectionView
-        public ObservableCollection<Item> Items { get; private set; }        
-
+        public ObservableCollection<Item> Items { get; private set; }                
         public ObservableCollection<ClassJob> JobCategories { get; private set; }
-        public ICommand ItemSelectionChangedCommand => new Command(ItemSelectionChanged);
 
+        public List<ClassJob> SelectedJobs { get; set; }        
+
+        private void ClassSelectionChanged(object obj)
+        {            
+            //Get selected Classes            
+        }       
 
         public ItemSearchViewModel()
         {
-            //Serch for items based on selected classes
-            //https://xivapi.com/search?string=exarchic&columns=ID,Name,Icon,UrlType&filters=Recipes.ID>1, ClassJobCategory.BLM=1&limit=40
+            var jobList = GetAllClassJobs();            
 
+            ClassSelectionChangedCommand = new Command(ClassSelectionChanged);
             SearchItemsCommand = new Command(OnSearchItem);
-
-            OnInitPage();
-        }
-
-        void ItemSelectionChanged()
-        {
             
+                                   
+            JobCategories = new ObservableCollection<ClassJob>(jobList);
+            OnPropertyChanged("JobCategories");            
         }
-
-
-        private async void OnInitPage()
-        {
-            var jobs = await GetAllClassJobs();
-
-            JobCategories = new ObservableCollection<ClassJob>(jobs);
-
-            OnPropertyChanged("JobCategories");
-        }
-
+     
         private async void OnSearchItem(object obj)
         {
             
-            var text = obj.ToString();
+            var searchString = obj.ToString();
+            var classString = new List<string>();
+            var filterString = string.Empty;
 
-            var sc = new SearchCommand(string.Format("search?string={0}&columns=ID,Name,Icon,UrlType&filters=Recipes.ID>1&limit=40&", text));
+
+            //Get selected classes ready for query -> use Abbreviations
+            if (SelectedJobs.Any())
+            {
+                foreach(ClassJob cj in SelectedJobs)
+                {
+                    classString.Add(@"ClassJobCategory." + cj.Abbreviation + "=1");
+                }
+
+                filterString = ","+string.Join(",", classString);
+            }
+
+            //Serch for items based on selected classes
+            //https://xivapi.com/search?string=exarchic&columns=ID,Name,Icon,UrlType&filters=Recipes.ID>1, ClassJobCategory.BLM=1&limit=40
+            var sc = new SearchCommand(string.Format("search?string={0}&columns=ID,Name,Icon,UrlType&filters=Recipes.ID>1{1}&limit=40&", searchString, filterString));
             
             var itemsFound = await GetSearchedItems(sc);
 
@@ -90,27 +102,10 @@ namespace CraFFtr.ViewModels
             return foundItems;
         }
 
-        private async Task<List<ClassJob>> GetAllClassJobs()
-        {
-            //todo: Maybe put this logic into a REST client class to be used everywhere else
-
-            HttpClient client = new HttpClient();
-            var sc = new SearchCommand(string.Format("ClassJob?columns=ID,Name,Icon,Abbreviation&"));
-            string uri = sc.Query;
-
-            HttpResponseMessage response = await client.GetAsync(uri);
-
-            var contentString = response.Content.ReadAsStringAsync().Result;
-            //end todo
-
-
-            var jObject = JObject.Parse(contentString);
-            var itemArray = (JArray)jObject["Results"];
-            var jobs = JsonConvert.DeserializeObject<List<ClassJob>>(itemArray.ToString()).Where(x => x.Id >7).ToList();            
-
-
-
-            client.Dispose();
+        private List<ClassJob> GetAllClassJobs()
+        {            
+                                 
+            var jobs = JsonConvert.DeserializeObject<List<ClassJob>>(Properties.Resources.JobCategories);            
             return jobs;
         }
 

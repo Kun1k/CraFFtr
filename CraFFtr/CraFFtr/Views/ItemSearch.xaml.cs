@@ -21,6 +21,7 @@ namespace CraFFtr.Views
         {
             InitializeComponent();
             
+
             BindingContext = _viewModel = new ItemSearchViewModel();
         }
 
@@ -45,10 +46,16 @@ namespace CraFFtr.Views
             await Navigation.PushAsync(new ItemDetailPage(items));
         }
 
-        private void ItemsResult_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void JobsView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //Add selected item to global List
-            //OnDeselect remove item from List
-        }
+            var jobList = new List<ClassJob>();
+
+            foreach(ClassJob job in JobsView.SelectedItems)
+            {
+                jobList.Add(job);
+            }
+
+            _viewModel.SelectedJobs = jobList;
+        }        
     }
 }

@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="JobCategories" xml:space="preserve">
+    <value>//All Jobs except beginner classes
+//https://xivapi.com/ClassJob?columns=ID,Name,Icon,Abbreviation
+
+
+[
+  //{
+  //  "Abbreviation": "GLA",
+  //  "ID": 1,
+  //  "Icon": "/cj/1/gladiator.png",
+  //  "Name": "gladiator"
+  //},
+  //{
+  //  "Abbreviation": "PGL",
+  //  "ID": 2,
+  //  "Icon": "/cj/1/pugilist.png",
+  //  "Name": "pugilist"
+  //},
+  //{
+  //  "Abbreviation": "MRD",
+  //  "ID": 3,
+  //  "Icon": "/cj/1/marauder.png",
+  //  "Name": "marauder"
+  //},
+  //{
+  //  "Abbreviation": "LNC",
+  //  "ID": 4,
+  //  "Icon": "/cj/1/lancer.png",
+  //  "Name": "lancer"
+  //},
+  //{
+  //  "Abbreviation": "ARC",
+  //  "ID": 5,
+  //  "Icon": "/cj/1/archer.png",
+  //  "Name": "archer"
+  //},
+  //{
+  //  "Abbreviation": "CNJ",
+  //  "ID": 6,
+  //  "Icon": "/cj/1/conjurer.png",
+  //  "Name": "conjurer"
+  //},
+  //{
+  //  "Abbreviation": "THM",
+  //  "ID": 7,
+  //  "Icon": "/cj/1/thaumaturge.png",
+  //  "Name": "thaumaturge"
+  //},
+  {
+    "Abbreviation": "CRP",
+    "ID": 8,
+    "Icon": "/cj/1/carpenter.png",
+    "Name": "carpenter"
+  },
+  {
+    "Abbreviation": "BSM",
+    "ID": 9,
+    "Icon": "/cj/1/blacksmith.png",
+    "Name": "blacksmith"
+  },
+  {
+    "Abbreviation": "ARM",
+    "ID": 10,
+    "Icon": "/cj/1/armorer.png",
+    "Name": "armorer"
+  },
+  {
+    "Abbreviation": "GSM",
+    "ID": 11,
+    "Icon": "/cj/1/goldsmith.png",
+    "Name": "goldsmith"
+  },
+  {
+    "Abbreviation": "LTW",
+    "ID": 12,
+    "Icon": "/cj/1/leatherworker.png",
+    "Name": "leatherworker"
+  },
+  {
+    "Abbreviation": "WVR",
+    "ID": 13,
+    "Icon": "/cj/1/weaver.png",
+    "Name": "weaver"
+  },
+  {
+    "Abbreviation": "ALC",
+    "ID": 14,
+    "Icon": "/cj/1/alchemist.png",
+    "Name": "alchemist"
+  },
+  {
+    "Abbreviation": "CUL",
+    "ID": 15,
+    "Icon": "/cj/1/culinarian.png",
+    "Name": "culinarian"
+  },
+  {
+    "Abbreviation": "MIN",
+    "ID": 16,
+    "Icon": "/cj/1/miner.png",
+    "Name": "miner"
+  },
+  {
+    "Abbreviation": "BTN",
+    "ID": 17,
+    "Icon": "/cj/1/botanist.png",
+    "Name": "botanist"
+  },
+  {
+    "Abbreviation": "FSH",
+    "ID": 18,
+    "Icon": "/cj/1/fisher.png",
+    "Name": "fisher"
+  },
+  {
+    "Abbreviation": "PLD",
+    "ID": 19,
+    "Icon": "/cj/1/paladin.png",
+    "Name": "paladin"
+  },
+  {
+    "Abbreviation": "MNK",
+    "ID": 20,
+    "Icon": "/cj/1/monk.png",
+    "Name": "monk"
+  },
+  {
+    "Abbreviation": "WAR",
+    "ID": 21,
+    "Icon": "/cj/1/warrior.png",
+    "Name": "warrior"
+  },
+  {
+    "Abbreviation": "DRG",
+    "ID": 22,
+    "Icon": "/cj/1/dragoon.png",
+    "Name": "dragoon"
+  },
+  {
+    "Abbreviation": "BRD",
+    "ID": 23,
+    "Icon": "/cj/1/bard.png",
+    "Name": "bard"
+  },
+  {
+    "Abbreviation": "WHM",
+    "ID": 24,
+    "Icon": "/cj/1/whitemage.png",
+    "Name": "white mage"
+  },
+  {
+    "Abbreviation": "BLM",
+    "ID": 25,
+    "Icon": "/cj/1/blackmage.png",
+    "Name": "black mage"
+  },
+  {
+    "Abbreviation": "ACN",
+    "ID": 26,
+    "Icon": "/cj/1/arcanist.png",
+    "Name": "arcanist"
+  },
+  {
+    "Abbreviation": "SMN",
+    "ID": 27,
+    "Icon": "/cj/1/summoner.png",
+    "Name": "summoner"
+  },
+  {
+    "Abbreviation": "SCH",
+    "ID": 28,
+    "Icon": "/cj/1/scholar.png",
+    "Name": "scholar"
+  },
+  {
+    "Abbreviation": "ROG",
+    "ID": 29,
+    "Icon": "/cj/1/rogue.png",
+    "Name": "rogue"
+  },
+  {
+    "Abbreviation": "NIN",
+    "ID": 30,
+    "Icon": "/cj/1/ninja.png",
+    "Name": "ninja"
+  },
+  {
+    "Abbreviation": "MCH",
+    "ID": 31,
+    "Icon": "/cj/1/machinist.png",
+    "Name": "machinist"
+  },
+  {
+    "Abbreviation": "DRK",
+    "ID": 32,
+    "Icon": "/cj/1/darkknight.png",
+    "Name": "dark knight"
+  },
+  {
+    "Abbreviation": "AST",
+    "ID": 33,
+    "Icon": "/cj/1/astrologian.png",
+    "Name": "astrologian"
+  },
+  {
+    "Abbreviation": "SAM",
+    "ID": 34,
+    "Icon": "/cj/1/samurai.png",
+    "Name": "samurai"
+  },
+  {
+    "Abbreviation": "RDM",
+    "ID": 35,
+    "Icon": "/cj/1/redmage.png",
+    "Name": "red mage"
+  },
+  {
+    "Abbreviation": "BLU",
+    "ID": 36,
+    "Icon": "/cj/1/bluemage.png",
+    "Name": "blue mage"
+  },
+  {
+    "Abbreviation": "GNB",
+    "ID": 37,
+    "Icon": "/cj/1/gunbreaker.png",
+    "Name": "gunbreaker"
+  },
+  {
+    "Abbreviation": "DNC",
+    "ID": 38,
+    "Icon": "/cj/1/dancer.png",
+    "Name": "dancer"
+  }
+]</value>
+  </data>
+</root>

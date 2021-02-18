@@ -8,14 +8,18 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="NewPrimary">#BB86FC</Color>
+            <Color x:Key="PrimaryControlBackground">#1f1f1f</Color>
+            
+
             <Style TargetType="Button">
-                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="TextColor" Value="Black"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                    <Setter Property="BackgroundColor" Value="{StaticResource NewPrimary}" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Disabled">
@@ -29,12 +33,23 @@
             </Style>
 
             <Style TargetType="Label">
-                <Setter Property="TextColor" Value="DarkSlateGray" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+
+            <Style TargetType="CollectionView">
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryControlBackground}" />
             </Style>
 
             <Style TargetType="SearchBar">
-                <Setter Property="TextColor" Value="Black" />
-                <Setter Property="PlaceholderColor" Value="DarkGray" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryControlBackground}"/>
+                <Setter Property="PlaceholderColor" Value="DimGray" />
+                <Setter Property="CancelButtonColor" Value="White"></Setter>
+            </Style>
+
+
+            <Style x:Key="ContentPageStyle" TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="#121212" />
             </Style>
         </ResourceDictionary>        
     </Application.Resources>
