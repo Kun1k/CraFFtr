@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CraFFtr.Views.AboutPage"
              xmlns:vm="clr-namespace:CraFFtr.ViewModels"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             Style="{StaticResource ContentPageStyle}">
     
     <ContentPage.BindingContext>
         <vm:AboutViewModel />
@@ -15,60 +16,14 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-
-
-    <!--<CollectionView ItemsSource="2"
-        EmptyView="No items selected">
-
-        <CollectionView.ItemsLayout>
-            <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
-        </CollectionView.ItemsLayout>
-
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Frame CornerRadius="10" BackgroundColor="LightSkyBlue" BorderColor="Red" Padding="5" Margin="5">
-                    <Grid Padding="10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="40" />
-                            <ColumnDefinition Width="40" />
-                            <ColumnDefinition Width="40" />
-                            <ColumnDefinition Width="40" />
-                            <ColumnDefinition Width="60" />
-                            <ColumnDefinition Width="60" />
-                            <ColumnDefinition Width="60" />
-                        </Grid.ColumnDefinitions>
-
-
-                        <Label Grid.ColumnSpan="7" Grid.Column="0" Grid.Row="0" Text="Exarchic Coat of Fending" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                        
-                        <Label Grid.Column="0" Grid.Row="1" Text="3x"  Style="{DynamicResource ListItemTextStyle}" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-                        <Image Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Source="https://ffxiv.gamerescape.com/w/images/thumb/8/88/Lightning_Cluster_Icon.png/96px-Lightning_Cluster_Icon.png" HeightRequest="30" WidthRequest="30"/>
-                        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Margin="20,0,0,0" Text="Ice Cluster" VerticalTextAlignment="Center" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
-
-                        <Label Grid.Column="1" Grid.Row="2" Text="1x" Style="{DynamicResource ListItemTextStyle}" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-                        <Image Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Source="https://ffxiv.gamerescape.com/w/images/e/e9/Fire_Cluster_Icon.png" HeightRequest="30" WidthRequest="30"/>
-                        <Label Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="4" Margin="20,0,0,0" Text="Fire Cluster" VerticalTextAlignment="Center" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
-
-                        <Label Grid.Column="2" Grid.Row="3" Text="1x" Style="{DynamicResource ListItemTextStyle}" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-                        <Image Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Source="https://ffxiv.gamerescape.com/w/images/thumb/8/80/Cotton_Boll_Icon.png/96px-Cotton_Boll_Icon.png" HeightRequest="30" WidthRequest="30"/>
-                        <Label Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4" Margin="20,0,0,0" Text="Fire Cluster" VerticalTextAlignment="Center" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold"/>
-
-
-                    </Grid>
-                </Frame>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>-->
-
-
-
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+        <StackLayout BackgroundColor="{StaticResource PrimaryControlBackground}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
                 <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
                     <Image Source="crafftr_logo.png" HeightRequest="64" AnchorX="0" />
@@ -79,14 +34,14 @@
 
         <ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                <Label Text="Crafting Helper for FF XIV" Style="{DynamicResource CaptionStyle}" TextColor="Black" FontSize="Title"/>
-                <Label Text="Search for an item, calculate ammount of materials and more" Style="{DynamicResource CaptionStyle}" TextColor="Black" FontSize="16" Padding="0,0,0,0"/>
+                <Label Text="Crafting Helper for FF XIV" Style="{DynamicResource CaptionStyle}" FontSize="Title"/>
+                <Label Text="Search for an item, calculate ammount of materials and more" Style="{DynamicResource CaptionStyle}" FontSize="16" Padding="0,0,0,0"/>
                 <Label FontSize="16" Padding="0,24,0,0">
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span TextColor="Black" Text="Learn more at "/>
-                                <Span TextColor="Black" Text="[INSERT LINK TO CRAFFTR]" FontAttributes="Bold"/>
+                                <Span TextColor="White" Text="Learn more at "/>
+                                <Span TextColor="White" Text="[INSERT LINK TO CRAFFTR]" FontAttributes="Bold"/>
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>

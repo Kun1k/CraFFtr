@@ -43,39 +43,45 @@
             </CollectionView>
 
             <SearchBar Placeholder="Search Item and select all you need"
-                       x:Name="ItemSearchBar"                       
+                       x:Name="ItemSearchBar"    
+                       Text="{Binding SearchText}"
                        SearchCommandParameter="{Binding Text, Source={x:Reference ItemSearchBar}}"
                        SearchCommand="{Binding SearchItemsCommand}"/>
 
-            <CollectionView x:Name="ItemsResult"                                       
-                            ItemsSource="{Binding Items}"                            
-                            EmptyView="Search for an item" SelectionMode="Multiple">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="5" />
-                </CollectionView.ItemsLayout>
+            <RefreshView 
+                    IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
+                    Command="{Binding RefreshCommand}">
                 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Padding="5" x:DataType="model:Item">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="50" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                <CollectionView x:Name="ItemsResult"                                       
+                                ItemsSource="{Binding Items}"                            
+                                EmptyView="Search for an item" SelectionMode="Multiple">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="5" />
+                    </CollectionView.ItemsLayout>
+                
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="5" x:DataType="model:Item">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
 
                             
-                            <Image Grid.Column="0" Source="{Binding Icon}" Aspect="AspectFill" HeightRequest="40" WidthRequest="40"/>
+                                <Image Grid.Column="0" Source="{Binding Icon}" Aspect="AspectFill" HeightRequest="40" WidthRequest="40"/>
                                                         
-                            <Label Grid.Column="1" Margin="10,0,0,0" Text="{Binding Name}" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold" LineBreakMode="TailTruncation" VerticalOptions="Center"/>
+                                <Label Grid.Column="1" Margin="10,0,0,0" Text="{Binding Name}" Style="{DynamicResource ListItemTextStyle}" FontAttributes="Bold" LineBreakMode="TailTruncation" VerticalOptions="Center"/>
                             
-                            <Label IsVisible="False" Text="{Binding Id}" />
+                                <Label IsVisible="False" Text="{Binding Id}" />
 
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
             <Button IsEnabled="True" Clicked="Calculate_Clicked" x:Name="Calculate" Text="Calculate Materials" VerticalOptions="CenterAndExpand" ></Button>
             
         </StackLayout>

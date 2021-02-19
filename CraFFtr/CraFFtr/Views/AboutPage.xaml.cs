@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 
 namespace CraFFtr.Views
 {
@@ -10,6 +7,6 @@ namespace CraFFtr.Views
         public AboutPage()
         {
             InitializeComponent();
-        }
+        }       
     }
 }

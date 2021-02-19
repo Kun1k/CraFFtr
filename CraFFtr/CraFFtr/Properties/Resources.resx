@@ -166,72 +166,6 @@
   //  "Name": "thaumaturge"
   //},
   {
-    "Abbreviation": "CRP",
-    "ID": 8,
-    "Icon": "/cj/1/carpenter.png",
-    "Name": "carpenter"
-  },
-  {
-    "Abbreviation": "BSM",
-    "ID": 9,
-    "Icon": "/cj/1/blacksmith.png",
-    "Name": "blacksmith"
-  },
-  {
-    "Abbreviation": "ARM",
-    "ID": 10,
-    "Icon": "/cj/1/armorer.png",
-    "Name": "armorer"
-  },
-  {
-    "Abbreviation": "GSM",
-    "ID": 11,
-    "Icon": "/cj/1/goldsmith.png",
-    "Name": "goldsmith"
-  },
-  {
-    "Abbreviation": "LTW",
-    "ID": 12,
-    "Icon": "/cj/1/leatherworker.png",
-    "Name": "leatherworker"
-  },
-  {
-    "Abbreviation": "WVR",
-    "ID": 13,
-    "Icon": "/cj/1/weaver.png",
-    "Name": "weaver"
-  },
-  {
-    "Abbreviation": "ALC",
-    "ID": 14,
-    "Icon": "/cj/1/alchemist.png",
-    "Name": "alchemist"
-  },
-  {
-    "Abbreviation": "CUL",
-    "ID": 15,
-    "Icon": "/cj/1/culinarian.png",
-    "Name": "culinarian"
-  },
-  {
-    "Abbreviation": "MIN",
-    "ID": 16,
-    "Icon": "/cj/1/miner.png",
-    "Name": "miner"
-  },
-  {
-    "Abbreviation": "BTN",
-    "ID": 17,
-    "Icon": "/cj/1/botanist.png",
-    "Name": "botanist"
-  },
-  {
-    "Abbreviation": "FSH",
-    "ID": 18,
-    "Icon": "/cj/1/fisher.png",
-    "Name": "fisher"
-  },
-  {
     "Abbreviation": "PLD",
     "ID": 19,
     "Icon": "/cj/1/paladin.png",
@@ -273,12 +207,12 @@
     "Icon": "/cj/1/blackmage.png",
     "Name": "black mage"
   },
-  {
-    "Abbreviation": "ACN",
-    "ID": 26,
-    "Icon": "/cj/1/arcanist.png",
-    "Name": "arcanist"
-  },
+ // {
+//    "Abbreviation": "ACN",
+   // "ID": 26,
+    //"Icon": "/cj/1/arcanist.png",
+   // "Name": "arcanist"
+  //},
   {
     "Abbreviation": "SMN",
     "ID": 27,
@@ -350,6 +284,72 @@
     "ID": 38,
     "Icon": "/cj/1/dancer.png",
     "Name": "dancer"
+  }
+  {
+    "Abbreviation": "CRP",
+    "ID": 8,
+    "Icon": "/cj/1/carpenter.png",
+    "Name": "carpenter"
+  },
+  {
+    "Abbreviation": "BSM",
+    "ID": 9,
+    "Icon": "/cj/1/blacksmith.png",
+    "Name": "blacksmith"
+  },
+  {
+    "Abbreviation": "ARM",
+    "ID": 10,
+    "Icon": "/cj/1/armorer.png",
+    "Name": "armorer"
+  },
+  {
+    "Abbreviation": "GSM",
+    "ID": 11,
+    "Icon": "/cj/1/goldsmith.png",
+    "Name": "goldsmith"
+  },
+  {
+    "Abbreviation": "LTW",
+    "ID": 12,
+    "Icon": "/cj/1/leatherworker.png",
+    "Name": "leatherworker"
+  },
+  {
+    "Abbreviation": "WVR",
+    "ID": 13,
+    "Icon": "/cj/1/weaver.png",
+    "Name": "weaver"
+  },
+  {
+    "Abbreviation": "ALC",
+    "ID": 14,
+    "Icon": "/cj/1/alchemist.png",
+    "Name": "alchemist"
+  },
+  {
+    "Abbreviation": "CUL",
+    "ID": 15,
+    "Icon": "/cj/1/culinarian.png",
+    "Name": "culinarian"
+  },
+  {
+    "Abbreviation": "MIN",
+    "ID": 16,
+    "Icon": "/cj/1/miner.png",
+    "Name": "miner"
+  },
+  {
+    "Abbreviation": "BTN",
+    "ID": 17,
+    "Icon": "/cj/1/botanist.png",
+    "Name": "botanist"
+  },
+  {
+    "Abbreviation": "FSH",
+    "ID": 18,
+    "Icon": "/cj/1/fisher.png",
+    "Name": "fisher"
   }
 ]</value>
   </data>

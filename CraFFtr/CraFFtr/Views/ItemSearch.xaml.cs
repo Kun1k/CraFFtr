@@ -1,11 +1,8 @@
 ﻿using CraFFtr.Models;
-using CraFFtr.REST;
 using CraFFtr.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -36,14 +33,23 @@ namespace CraFFtr.Views
             var selectedItems = ItemsResult.SelectedItems;
             var itemIds = new List<string>();
 
-            foreach(Item item in selectedItems)
+            if (selectedItems.Any())
             {
-                itemIds.Add(item.Id);
+                foreach (Item item in selectedItems)
+                {
+                    itemIds.Add(item.Id);
+                }
+
+                var items = _viewModel.Items.Where(x => itemIds.Contains(x.Id)).ToList();
+
+                await Navigation.PushAsync(new ItemDetailPage(items));
+            }
+            else
+            {
+                await DisplayAlert("Warning", "Select an item first", "Ok", FlowDirection.RightToLeft);
             }
 
-            var items = _viewModel.Items.Where(x => itemIds.Contains(x.Id)).ToList();
-
-            await Navigation.PushAsync(new ItemDetailPage(items));
+            
         }
 
         private void JobsView_SelectionChanged(object sender, SelectionChangedEventArgs e)

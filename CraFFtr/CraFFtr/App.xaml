@@ -46,7 +46,7 @@
                 <Setter Property="PlaceholderColor" Value="DimGray" />
                 <Setter Property="CancelButtonColor" Value="White"></Setter>
             </Style>
-
+            
 
             <Style x:Key="ContentPageStyle" TargetType="ContentPage">
                 <Setter Property="BackgroundColor" Value="#121212" />
