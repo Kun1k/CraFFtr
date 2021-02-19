@@ -165,6 +165,12 @@
   //  "Icon": "/cj/1/thaumaturge.png",
   //  "Name": "thaumaturge"
   //},
+  // {
+//    "Abbreviation": "ACN",
+   // "ID": 26,
+    //"Icon": "/cj/1/arcanist.png",
+   // "Name": "arcanist"
+  //},
   {
     "Abbreviation": "PLD",
     "ID": 19,
@@ -207,12 +213,6 @@
     "Icon": "/cj/1/blackmage.png",
     "Name": "black mage"
   },
- // {
-//    "Abbreviation": "ACN",
-   // "ID": 26,
-    //"Icon": "/cj/1/arcanist.png",
-   // "Name": "arcanist"
-  //},
   {
     "Abbreviation": "SMN",
     "ID": 27,
@@ -284,7 +284,7 @@
     "ID": 38,
     "Icon": "/cj/1/dancer.png",
     "Name": "dancer"
-  }
+  },
   {
     "Abbreviation": "CRP",
     "ID": 8,
