@@ -28,6 +28,7 @@ namespace CraFFtr.ViewModels
 
         public bool IsRefreshing { get; set; }
 
+        public List<Item> AllBaseMaterials { get; set; }
         public bool ShowAllMats { get; set; }
         public string ButtonText { get; set; }
 
@@ -282,12 +283,27 @@ namespace CraFFtr.ViewModels
             ShowAllMats = (ShowAllMats) ? false : true;
 
             if (ShowAllMats)
-                ButtonText = TextShowAllMaterials;
-            else
+            {
                 ButtonText = TextShowPreviousItemList;
+
+                //Logic for display all base mats
+                GetAllBaseMatsFromRecipes();
+
+            }
+            else
+            {
+                ButtonText = TextShowAllMaterials;
+            }
+                
+            
 
             OnPropertyChanged("ShowAllMats");
             OnPropertyChanged("ButtonText");
+        }
+
+        private void GetAllBaseMatsFromRecipes()
+        {
+
         }
 
         #region INotifyPropertyChanged

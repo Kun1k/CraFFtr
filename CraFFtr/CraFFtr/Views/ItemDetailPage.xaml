@@ -57,6 +57,7 @@
         <!--</RefreshView>-->
 
         <CollectionView  x:Name="TotalBaseMaterialsList" 
+                         ItemsSource="{Binding AllBaseMaterials}"
                          IsVisible="{Binding ShowAllMats}"
                          IsEnabled="False"
                          SelectionMode="None">
