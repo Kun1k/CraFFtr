@@ -76,7 +76,7 @@ namespace CraFFtr.ViewModels
             var filterString = string.Empty;
 
             //Get selected classes ready for query -> use Abbreviations
-            if (SelectedJobs != null)
+            if (SelectedJobs !=null && SelectedJobs.Any())
             {
                 foreach (ClassJob cj in SelectedJobs)
                 {

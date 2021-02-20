@@ -17,6 +17,9 @@ namespace CraFFtr.ViewModels
 {
     public class ItemDetailViewModel : INotifyPropertyChanged
     {
+        #region Definitions
+        private readonly string TextShowAllMaterials = "Show all base materials as list";
+        private readonly string TextShowPreviousItemList = "Show previous item list";
 
         //It has to be set as property {get; set;} to work with CollectionView
         public ObservableCollection<Item> Items { get; private set; }
@@ -25,15 +28,26 @@ namespace CraFFtr.ViewModels
 
         public bool IsRefreshing { get; set; }
 
+        public bool ShowAllMats { get; set; }
+        public string ButtonText { get; set; }
+
+        public Command TotalMaterialsShowCommand { get; set; }
+
+        #endregion
+
         public ItemDetailViewModel(List<Item> selectedItems)
         {
+            //Defaults
+            this.ShowAllMats = false;
+            this.TotalMaterialsShowCommand = new Command(ButtonAllMaterialsClicked);
             this.Items = new ObservableCollection<Item>(selectedItems);
+            this.ButtonText = TextShowAllMaterials;
+
+
             OnPropertyChanged("Items");
 
             CalculateIngredients();
         }
-
-
 
         public async void CalculateIngredients()
         {
@@ -262,6 +276,19 @@ namespace CraFFtr.ViewModels
             return recipes;
         }
 
+        public void ButtonAllMaterialsClicked()
+        {
+
+            ShowAllMats = (ShowAllMats) ? false : true;
+
+            if (ShowAllMats)
+                ButtonText = TextShowAllMaterials;
+            else
+                ButtonText = TextShowPreviousItemList;
+
+            OnPropertyChanged("ShowAllMats");
+            OnPropertyChanged("ButtonText");
+        }
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

@@ -3,25 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:CraFFtr.ViewModels"  
              xmlns:model="clr-namespace:CraFFtr.Models"
-             xmlns:local1="clr-namespace:CraFFtr.Helper"
+             xmlns:helper="clr-namespace:CraFFtr.Helper"
              xmlns:cc="clr-namespace:CraFFtr"
              x:Class="CraFFtr.Views.ItemDetailPage"
-             Title="Items Detail">
+             Title="Items Detail"
+             Style="{StaticResource ContentPageStyle}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <local1:TextToBoolConverter x:Key="TextToBoolConverter" />
+            <helper:TextToBoolConverter x:Key="TextToBoolConverter" />
+            <helper:BooleanConverter x:Key="BooleanConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-        
-    
-    <StackLayout BackgroundColor="DarkSlateGray">
-        <!--<Label Text="Needed Crafting Materials" FontSize="Large" FontAttributes="Bold" HorizontalOptions="StartAndExpand" Padding="10"></Label>-->
-        <!--<RefreshView IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}">-->
-            <CollectionView  x:Name="ItemIngredients"                            
+
+
+    <StackLayout>
+        <CollectionView  x:Name="ItemIngredients"                            
                          ItemsSource="{Binding Recipes}"
-                         SelectionMode="Single"
-                         SelectionChanged="ItemIngredients_SelectionChanged"                         
+                         IsVisible="{Binding ShowAllMats, Converter={helper:BooleanConverter}}"
+                         SelectionMode="None"                                                                                           
                          EmptyView="No items selected">
 
             <CollectionView.ItemsLayout>
@@ -56,25 +56,38 @@
         </CollectionView>
         <!--</RefreshView>-->
 
-        <!--<Frame CornerRadius="10" BackgroundColor="LightSkyBlue" >
-            <Grid VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+        <CollectionView  x:Name="TotalBaseMaterialsList" 
+                         IsVisible="{Binding ShowAllMats}"
+                         IsEnabled="False"
+                         SelectionMode="None">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="40"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" RowSpacing="15">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
 
-                <RadioButton x:Name="chckSubmatsPerRecipe" Grid.Row="0" Grid.Column="0" CheckedChanged="chckSubmatsPerRecipe_CheckedChanged" Text="Show all submats per recipe"/>
-                <Label Grid.Row="0" Grid.Column="1" Text="Show all submats per recipe" FontAttributes="Bold" FontSize="Medium" VerticalOptions="CenterAndExpand" />
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"></ColumnDefinition>
+                            <ColumnDefinition Width="40"></ColumnDefinition>
+                            <ColumnDefinition Width="200"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        
+                        
+                        
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+        </CollectionView>
 
-                <RadioButton x:Name="ChckAllSubmats" Grid.Row="1" Grid.Column="0" CheckedChanged="ChckAllSubmats_CheckedChanged" Text="Show total submats for all recipes"/>
-                <Label Grid.Row="1" Grid.Column="1" Text="Show total submats for all recipes" FontAttributes="Bold" FontSize="Medium"  VerticalOptions="CenterAndExpand"/>
-            </Grid>
-        </Frame>-->
+
+        <Button Text="{Binding ButtonText}" Command="{Binding TotalMaterialsShowCommand}" VerticalOptions="CenterAndExpand">
+        </Button>
     </StackLayout>
 
 </ContentPage>
