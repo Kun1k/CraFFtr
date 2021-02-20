@@ -23,12 +23,11 @@ namespace CraFFtr.ViewModels
 
         //It has to be set as property {get; set;} to work with CollectionView
         public ObservableCollection<Item> Items { get; private set; }
-
+        public ObservableCollection<Item> AllBaseMaterials { get; set; }
         public ObservableCollection<Recipe> Recipes { get; set; }        
 
         public bool IsRefreshing { get; set; }
-
-        public List<Item> AllBaseMaterials { get; set; }
+        
         public bool ShowAllMats { get; set; }
         public string ButtonText { get; set; }
 
@@ -303,7 +302,25 @@ namespace CraFFtr.ViewModels
 
         private void GetAllBaseMatsFromRecipes()
         {
+            var allBaseMats = new List<Item>();
+            var recipes = Recipes;
 
+            foreach(var recipe in recipes)
+            {
+                foreach(var ingr in recipe.Ingredients)
+                {
+                   
+                    var updatedItem = allBaseMats.FirstOrDefault(x => x.Id == ingr.Id);
+                    
+                    if(updatedItem != null)
+                        updatedItem.Ammount += ingr.Ammount;                                      
+                    else
+                        allBaseMats.Add(ingr);
+                }
+            }
+
+            AllBaseMaterials = new ObservableCollection<Item>(allBaseMats);
+            OnPropertyChanged(nameof(AllBaseMaterials));
         }
 
         #region INotifyPropertyChanged
