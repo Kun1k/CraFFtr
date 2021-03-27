@@ -16,7 +16,10 @@ namespace CraFFtr.Models
             }
             set
             {
-                _url = "https://xivapi.com" + value;
+                if (!value.StartsWith("http"))
+                    _url = "https://xivapi.com" + value;
+                else
+                    _url = value;
             }
         }
         public string Name { get; set; }

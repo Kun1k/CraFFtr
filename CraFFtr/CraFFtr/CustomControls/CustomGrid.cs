@@ -104,9 +104,7 @@ namespace CraFFtr
             {
                 var items = (List<Item>)newValue;
 
-                PopulateGrid(cg, items);
-                
-                
+                PopulateGrid(cg, items);                                
             }            
 
             //< Image Grid.Column = "0" Grid.Row = "0" Grid.ColumnSpan = "3" Source = "{Binding Item.Icon}" HeightRequest = "50" WidthRequest = "50" />

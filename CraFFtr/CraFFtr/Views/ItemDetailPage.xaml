@@ -1,12 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:CraFFtr.ViewModels"  
-             xmlns:model="clr-namespace:CraFFtr.Models"
              xmlns:helper="clr-namespace:CraFFtr.Helper"
              xmlns:cc="clr-namespace:CraFFtr"
              x:Class="CraFFtr.Views.ItemDetailPage"
-             Title="Items Detail"
+             Title="Items Detail"             
              Style="{StaticResource ContentPageStyle}">
 
     <ContentPage.Resources>
@@ -18,8 +16,12 @@
 
 
     <StackLayout>
-        <CollectionView  x:Name="ItemIngredients"                            
+        <ActivityIndicator IsRunning="{Binding ShowLoadingIndicator}" IsVisible="{Binding ShowLoadingIndicator}" Color="{StaticResource NewPrimary}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        
+        <CollectionView  x:Name="ItemIngredients"    
+                         Opacity="{Binding Opacity}"
                          ItemsSource="{Binding Recipes}"
+                         IsEnabled="{Binding ShowLoadingIndicator, Converter={helper:BooleanConverter}}"
                          IsVisible="{Binding ShowAllMats, Converter={helper:BooleanConverter}}"
                          SelectionMode="None"                                                                                           
                          EmptyView="No items selected">
@@ -59,6 +61,7 @@
         <CollectionView  x:Name="TotalBaseMaterialsList" 
                          ItemsSource="{Binding AllBaseMaterials}"
                          IsVisible="{Binding ShowAllMats}"
+                         Opacity="{Binding Opacity}"
                          IsEnabled="False"
                          SelectionMode="None">
             <CollectionView.ItemsLayout>
@@ -69,12 +72,12 @@
                 <DataTemplate>
                     <Grid Padding="10">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="30" />
+                            <RowDefinition Height="35" />
                         </Grid.RowDefinitions>
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="25"></ColumnDefinition>
-                            <ColumnDefinition Width="30"></ColumnDefinition>
+                            <ColumnDefinition Width="35"></ColumnDefinition>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Label Text="{Binding Ammount}" Style="{DynamicResource ListItemTextStyle}" Grid.Column="0" FontAttributes="Bold" VerticalOptions="CenterAndExpand"></Label>
@@ -88,7 +91,7 @@
         </CollectionView>
 
 
-        <Button Text="{Binding ButtonText}" Command="{Binding TotalMaterialsShowCommand}" VerticalOptions="CenterAndExpand">
+        <Button Opacity="{Binding Opacity}" IsEnabled="{Binding ShowLoadingIndicator, Converter={helper:BooleanConverter}}" Text="{Binding ButtonText}" Command="{Binding TotalMaterialsShowCommand}" VerticalOptions="CenterAndExpand">
         </Button>
     </StackLayout>
 

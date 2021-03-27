@@ -27,9 +27,10 @@ namespace CraFFtr.ViewModels
         public ObservableCollection<Recipe> Recipes { get; set; }        
 
         public bool IsRefreshing { get; set; }
-        
+        public double Opacity { get; set; }
         public bool ShowAllMats { get; set; }
         public string ButtonText { get; set; }
+        public bool ShowLoadingIndicator { get; set; }
 
         public Command TotalMaterialsShowCommand { get; set; }
 
@@ -42,17 +43,16 @@ namespace CraFFtr.ViewModels
             this.TotalMaterialsShowCommand = new Command(ButtonAllMaterialsClicked);
             this.Items = new ObservableCollection<Item>(selectedItems);
             this.ButtonText = TextShowAllMaterials;
+            this.ShowLoadingIndicator = true;
+            this.Opacity = 0.5;
 
-
-            OnPropertyChanged("Items");
-
+            OnPropertyChanged(nameof(ShowLoadingIndicator));
+            OnPropertyChanged("Items");            
             CalculateIngredients();
         }
 
         public async void CalculateIngredients()
-        {
-            IsRefreshing = true;
-
+        {                     
             Recipes = new ObservableCollection<Recipe>();
 
             foreach (var item in Items)
@@ -60,11 +60,12 @@ namespace CraFFtr.ViewModels
                 await GetRecipeForItem(item, true);
             }
 
+            ShowLoadingIndicator = false;
+            Opacity = 1.0;
 
-            OnPropertyChanged("Recipes");
-
-            OnPropertyChanged("Ingredients");
-            IsRefreshing = false;
+            OnPropertyChanged(nameof(Recipes));                        
+            OnPropertyChanged(nameof(ShowLoadingIndicator));
+            OnPropertyChanged(nameof(Opacity));
 
 
         }
@@ -303,23 +304,25 @@ namespace CraFFtr.ViewModels
         private void GetAllBaseMatsFromRecipes()
         {
             var allBaseMats = new List<Item>();
+       
             var recipes = Recipes;
 
             foreach(var recipe in recipes)
-            {
+            {                
                 foreach(var ingr in recipe.Ingredients)
                 {
-                   
+                    var item = new Item() { Name = ingr.Name, Icon = ingr.Icon, Id = ingr.Id, Ammount = ingr.Ammount };
+
                     var updatedItem = allBaseMats.FirstOrDefault(x => x.Id == ingr.Id);
                     
                     if(updatedItem != null)
                         updatedItem.Ammount += ingr.Ammount;                                      
                     else
-                        allBaseMats.Add(ingr);
+                        allBaseMats.Add(item);
                 }
             }
 
-            AllBaseMaterials = new ObservableCollection<Item>(allBaseMats);
+            AllBaseMaterials = new ObservableCollection<Item>(allBaseMats.OrderBy(x => x.Id));
             OnPropertyChanged(nameof(AllBaseMaterials));
         }
 

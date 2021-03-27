@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:CraFFtr.ViewModels"  
              xmlns:model="clr-namespace:CraFFtr.Models"
-             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:slideview="clr-namespace:Xamarin.Forms.SlideView;assembly=Xamarin.Forms.SlideView"
              x:Class="CraFFtr.Views.ItemSearch"
              Title="Item Search"
              Style="{StaticResource ContentPageStyle}">
@@ -34,14 +30,13 @@
 
                             <Image Grid.Column="0" Grid.Row="0" Source="{Binding Icon}" HeightRequest="40" WidthRequest="40" VerticalOptions="Start"/>
                             <Label Grid.Column="0" Grid.Row="1" FontSize="Small" Text="{Binding Abbreviation}" VerticalOptions="Start" HorizontalOptions="Center"></Label>
-                            
+
                         </Grid>
 
 
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
             <SearchBar Placeholder="Search Item and select all you need"
                        x:Name="ItemSearchBar"    
                        Text="{Binding SearchText}"
